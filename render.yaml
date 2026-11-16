@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: zatyshna-kava
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      - key: DATABASE_PATH
+        value: /tmp/zatyshna.db
+      - key: ADMIN_TOKEN
+        generateValue: true
